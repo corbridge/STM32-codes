@@ -20,12 +20,12 @@
 
 int main(void)
 {
-	uint32_t *pClock = (uint32_t*)0x40023830;
-	uint32_t *pGPIOAMode = (uint32_t*)0x40020000;
-	uint32_t *pGPIOAOutput = (uint32_t*)0x40020014;
+	uint32_t volatile *pClock = (uint32_t*)0x40023830;
+	uint32_t volatile *pGPIOAMode = (uint32_t*)0x40020000;
+	uint32_t volatile *pGPIOAOutput = (uint32_t*)0x40020014;
 
-	uint32_t *pGPIOBMode = (uint32_t*)0x40020400;
-	uint32_t *pGPIOBInput = (uint32_t*)0x40020410;
+	uint32_t volatile *pGPIOBMode = (uint32_t*)0x40020400;
+	uint32_t volatile *pGPIOBInput = (uint32_t*)0x40020410;
 
 	*pClock |= 0x3;           // Enable GPIOA and GPIOB Clock
 	*pGPIOAMode &= 0xFFFFFFFC; // Clear 0th and 1st positions
@@ -42,7 +42,7 @@ int main(void)
 			*pGPIOAOutput |= 0x01;	   //Set HIGH
 		}else
 		{
-			*pGPIOAOutput &= ~(0x01);	   //Set HIGH
+			*pGPIOAOutput &= ~(0x01);	   //Set LOW
 		}
 	}
 }
