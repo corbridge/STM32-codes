@@ -20,7 +20,7 @@
 
 int main(void)
 {
-    RCC_AHB1ENR_t *clockEnable = (RCC_AHB1ENR_t*)0x40023830;
+    RCC_AHB1ENR_t volatile *clockEnable = (RCC_AHB1ENR_t*)0x40023830;
     GPIOx_MODER_t *gpio_mode = (GPIOx_MODER_t*)0x40020000;
     GPIOx_ODR_t *gpio_output = (GPIOx_ODR_t*)0x40020014;
 
