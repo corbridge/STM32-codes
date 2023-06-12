@@ -22,27 +22,98 @@
 int main(void)
 {
     RCC_AHB1ENR_t volatile *clockEnable = (RCC_AHB1ENR_t*)0x40023830;
-    GPIOx_MODER_t volatile *gpio_a_mode = (GPIOx_MODER_t*)0x40020000;
-    GPIOx_MODER_t volatile *gpio_b_mode = (GPIOx_MODER_t*)0x40020400;
-    GPIOx_ODR_t volatile *gpio_a_output = (GPIOx_ODR_t*)0x40020014;
-    GPIOx_ODR_t volatile *gpio_b_output = (GPIOx_ODR_t*)0x40020414;
-    GPIOx_IDR_t volatile *gpio_b_input = (GPIOx_IDR_t*)0x40020410;
-    GPIOx_PUPDR_t volatile *gpio_pullup = (GPIOx_PUPDR_t*)0x4002040C;
+
+    GPIOx_MODER_t *gpio_a_mode = (GPIOx_MODER_t*)0x40020000;
+    GPIOx_ODR_t *gpio_a_output = (GPIOx_ODR_t*)0x40020014;
+
+    GPIOx_MODER_t *gpio_c_mode = (GPIOx_MODER_t*)0x40020800;
+    GPIOx_ODR_t *gpio_c_output = (GPIOx_ODR_t*)0x40020814;
+    GPIOx_IDR_t *gpio_c_input = (GPIOx_IDR_t*)0x40020810;
+
+    GPIOx_PUPDR_t *gpio_pullup = (GPIOx_PUPDR_t*)0x4002080C;
 
     clockEnable->GPIOA_EN = 1; // Enable GPIOA clock
-    clockEnable->GPIOB_EN = 1; // Enable GPIOB clock
-    enableDisplayGPIO((GPIOx_MODER_t*)&gpio_a_mode);
-    enableMatrix((GPIOx_MODER_t*)&gpio_b_mode, (GPIOx_PUPDR_t*)&gpio_pullup);
+    clockEnable->GPIOC_EN = 1; // Enable GPIOB clock
+    enableDisplayGPIO(gpio_a_mode);
+    enableMatrix(gpio_c_mode, gpio_pullup);
+
 
     while(1)
     {
-		uint8_t status = (uint8_t)(gpio_b_input->PIN_0 & 0x1);  // Give state to variable
-		if(status)
-		{
-			two((GPIOx_ODR_t*)&gpio_a_output);
-		}else
-		{
-			clear((GPIOx_ODR_t*)&gpio_a_output);
-		}
+      initMatrix(gpio_c_output);
+      gpio_c_output->PIN_0 = 0;
+      if(!(gpio_c_input->PIN_4 & 0x1))
+      {
+        one(gpio_a_output);
+      }
+      if(!(gpio_c_input->PIN_5 & 0x1))
+      {
+        two(gpio_a_output);
+      }
+      if(!(gpio_c_input->PIN_6 & 0x1))
+      {
+        three(gpio_a_output);
+      }
+      if(!(gpio_c_input->PIN_7 & 0x1))
+      {
+        letter_a(gpio_a_output);
+      }
+      
+      initMatrix(gpio_c_output);
+      gpio_c_output->PIN_1 = 0;
+      if(!(gpio_c_input->PIN_4 & 0x1))
+      {
+        four(gpio_a_output);
+      }
+      if(!(gpio_c_input->PIN_5 & 0x1))
+      {
+        five(gpio_a_output);
+      }
+      if(!(gpio_c_input->PIN_6 & 0x1))
+      {
+        six(gpio_a_output);
+      }
+      if(!(gpio_c_input->PIN_7 & 0x1))
+      {
+        letter_b(gpio_a_output);
+      }
+
+      initMatrix(gpio_c_output);
+      gpio_c_output->PIN_2 = 0;
+      if(!(gpio_c_input->PIN_4 & 0x1))
+      {
+        seven(gpio_a_output);
+      }
+      if(!(gpio_c_input->PIN_5 & 0x1))
+      {
+        eight(gpio_a_output);
+      }
+      if(!(gpio_c_input->PIN_6 & 0x1))
+      {
+        nine(gpio_a_output);
+      }
+      if(!(gpio_c_input->PIN_7 & 0x1))
+      {
+        letter_c(gpio_a_output);
+      }
+
+      initMatrix(gpio_c_output);
+      gpio_c_output->PIN_3 = 0;
+      if(!(gpio_c_input->PIN_4 & 0x1))
+      {
+        star(gpio_a_output);
+      }
+      if(!(gpio_c_input->PIN_5 & 0x1))
+      {
+        zero(gpio_a_output);
+      }
+      if(!(gpio_c_input->PIN_6 & 0x1))
+      {
+        hash(gpio_a_output);
+      }
+      if(!(gpio_c_input->PIN_7 & 0x1))
+      {
+        letter_d(gpio_a_output);
+      }
     }
 }
