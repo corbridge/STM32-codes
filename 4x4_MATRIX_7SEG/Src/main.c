@@ -54,7 +54,7 @@ int main(void)
       {
         three(gpio_a_output);
       }
-      if(!(gpio_c_input->PIN_7 & 0x1))
+      if(!(gpio_c_input->PIN_8 & 0x1))
       {
         letter_a(gpio_a_output);
       }
@@ -73,13 +73,13 @@ int main(void)
       {
         six(gpio_a_output);
       }
-      if(!(gpio_c_input->PIN_7 & 0x1))
+      if(!(gpio_c_input->PIN_8 & 0x1))
       {
         letter_b(gpio_a_output);
       }
 
       initMatrix(gpio_c_output);
-      gpio_c_output->PIN_2 = 0;
+      gpio_c_output->PIN_3 = 0;
       if(!(gpio_c_input->PIN_4 & 0x1))
       {
         seven(gpio_a_output);
@@ -92,13 +92,13 @@ int main(void)
       {
         nine(gpio_a_output);
       }
-      if(!(gpio_c_input->PIN_7 & 0x1))
+      if(!(gpio_c_input->PIN_8 & 0x1))
       {
         letter_c(gpio_a_output);
       }
 
       initMatrix(gpio_c_output);
-      gpio_c_output->PIN_3 = 0;
+      gpio_c_output->PIN_2 = 0;
       if(!(gpio_c_input->PIN_4 & 0x1))
       {
         star(gpio_a_output);
@@ -111,7 +111,7 @@ int main(void)
       {
         hash(gpio_a_output);
       }
-      if(!(gpio_c_input->PIN_7 & 0x1))
+      if(!(gpio_c_input->PIN_8 & 0x1))
       {
         letter_d(gpio_a_output);
       }

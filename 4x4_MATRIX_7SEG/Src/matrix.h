@@ -22,13 +22,13 @@ void enableMatrix(GPIOx_MODER_t* gpio_mode, GPIOx_PUPDR_t* gpio_pullup)
     gpio_mode->PIN_4 = 0;
     gpio_mode->PIN_5 = 0;
     gpio_mode->PIN_6 = 0;
-    gpio_mode->PIN_7 = 0;
+    gpio_mode->PIN_8 = 0;
 
     //Columns pullup
     gpio_pullup->PIN_4 = 1;
     gpio_pullup->PIN_5 = 1;
     gpio_pullup->PIN_6 = 1;
-    gpio_pullup->PIN_7 = 1;
+    gpio_pullup->PIN_8 = 1;
 }
 
 void initMatrix(GPIOx_ODR_t* gpio_output)
