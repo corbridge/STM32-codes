@@ -20,24 +20,24 @@
 
 int main(void)
 {
-    uint32_t *pGPIO_Clock = (uint32_t*)0x40023800 + 0x30;
+    uint32_t *pGPIO_Clock = (uint32_t*)0x40023830;
     uint32_t *pGPIOA_Mode = (uint32_t*)0x40020000;
-    uint32_t *pGPIO_AFRL = (uint32_t*)0x40020000 + 0x20;
+    uint32_t *pGPIO_AFRL = (uint32_t*)0x40020020;
 
-    uint32_t *pTIM_CLOCK = (uint32_t*)0x40023800 + 0x40;
-    uint32_t *pCLOCK_config = (uint32_t*)0x40023800 + 0x08;
+    uint32_t *pTIM_CLOCK = (uint32_t*)0x40023840;
+    uint32_t *pCLOCK_config = (uint32_t*)0x40023808;
 
     uint32_t *pTIM3_CR1 = (uint32_t*)0x40000400;
-    uint32_t *pTIM3_PSC = (uint32_t*)0x40000400 + 0x28;
-    uint32_t *pTIM3_ARR = (uint32_t*)0x40000400 + 0x2C;
-    uint32_t *pTIM3_CNT = (uint32_t*)0x40000400 + 0x24;
-    uint32_t *pTIM3_CCMR1 = (uint32_t*)0x40000400 + 0x18;
-    uint32_t *pTIM3_CCER = (uint32_t*)0x40000400 + 0x20;
-    uint32_t *pTIM3_CCR1 = (uint32_t*)0x40000400 + 0x34;
+    uint32_t *pTIM3_PSC = (uint32_t*)0x40000428;
+    uint32_t *pTIM3_ARR = (uint32_t*)0x4000042C;
+    uint32_t *pTIM3_CNT = (uint32_t*)0x40000424;
+    uint32_t *pTIM3_CCMR1 = (uint32_t*)0x40000418;
+    uint32_t *pTIM3_CCER = (uint32_t*)0x40000420;
+    uint32_t *pTIM3_CCR1 = (uint32_t*)0x40000434;
 
     *pGPIO_Clock |= 0x01; // Enable Clock for GPIOA
-    *pGPIOA_Mode |= 0x2; //Enable GPIOA PIN 0 to alternate MODE
-    *pGPIO_AFRL |= 0x2; //Enable Alternate Function 2 (AF2) which is General Timer to pin 0
+    *pGPIOA_Mode |= 0x01; //Enable GPIOA PIN 0 to alternate MODE
+    *pGPIO_AFRL |= 0x02; //Enable Alternate Function 2 (AF2) which is General Timer to pin 0
 
     *pTIM_CLOCK |= 0x02; //Enable clock for tim3
     *pTIM3_PSC = 16 - 1;
